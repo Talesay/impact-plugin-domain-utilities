@@ -16,18 +16,18 @@ ig.module(
 					return true;
 				}
 			},
-			isCurrentDomainAllowed: function (domainArray) {
+			isCurrentDomainAllowed: function (allowedDomainsArray) {
 				var isAllowed = false,
 					i;
 				if (ig.inIframe()) {
-					for (i = 0; i < domainArray.length; i += 1) {
-						if (ig.getReferrerHostname().match(new RegExp('([^\/]+.)?' + domainArray[i] + '(\/|$)', 'i'))) {
+					for (i = 0; i < allowedDomainsArray.length; i += 1) {
+						if (ig.getReferrerHostname().match(new RegExp('([^\/]+.)?' + allowedDomainsArray[i] + '(\/|$)', 'i'))) {
 							isAllowed = true;
 						}
 					}
 				} else {
-					for (i = 0; i < domainArray.length; i += 1) {
-						if (window.location.hostname.match(new RegExp('([^\/]+.)?' + domainArray[i] + '(\/|$)', 'i'))) {
+					for (i = 0; i < allowedDomainsArray.length; i += 1) {
+						if (window.location.hostname.match(new RegExp('([^\/]+.)?' + allowedDomainsArray[i] + '(\/|$)', 'i'))) {
 							isAllowed = true;
 						}
 					}
@@ -40,6 +40,9 @@ ig.module(
 							isDomain = true;
 						}
 				return isDomain;
+			},
+			domainRedirect: function (domain) {
+			window.top.location.href = domain;
 			}
 		},
 
