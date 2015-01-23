@@ -37,12 +37,12 @@ ig.module(
 			isCurrentDomain: function (domain) {
 				var isDomain = false;
 				if (ig.getReferrerHostname().match(new RegExp('([^\/]+.)?' + domain + '(\/|$)', 'i'))) {
-							isDomain = true;
-						}
+					isDomain = true;
+				}
 				return isDomain;
 			},
 			domainRedirect: function (domain) {
-			window.top.location.href = domain;
+				window.top.location.href = domain;
 			}
 		},
 
